@@ -2,10 +2,13 @@
 //지역 변수 2개 (main 안에 하나, 다른 함수 안에 하나)
 //malloc으로 할당한 메모리 1개
 //main 함수 자체의 주소
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int g_var = 1;                 // 전역 변수 → 데이터 영역
+int g_var = 1;     // 전역 변수 → 데이터 영역
+int g_zero;          // 추가: 초기값 없음
+int g_zero2 = 0;     // 추가: 0으로 초기화            
 
 void other_func(void) {
     int other_local = 3;       // 다른 함수의 지역 변수 → 스택
@@ -22,8 +25,12 @@ int main(void) {
     printf("heap        : %p\n", (void*)heap);
     printf("s_var       : %p\n", (void*)&s_var);
     printf("g_var       : %p\n", (void*)&g_var);
+    printf("g_zero      : %p\n", (void*)&g_zero);
+    printf("g_zero2     : %p\n", (void*)&g_zero2);
     printf("main 함수   : %p\n", (void*)main);
 
+    printf("PID: %d, 엔터를 누르면 종료\n", getpid());
+    getchar();
     free(heap);                // 빌린 창고는 반납
     return 0;
 }
