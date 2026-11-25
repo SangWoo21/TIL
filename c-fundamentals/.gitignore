@@ -7,3 +7,6 @@ day*/array
 day*/align
 day*/align
 day*/bits
+day*/heap
+day*/heap_asan
+core*
